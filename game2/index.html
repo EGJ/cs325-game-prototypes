@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Hello! Amaze!</title>
+    <title>Beware the chickens!</title>
     <script src="js/phaser.js"></script>
     <script src="js/main.js"></script>
 
@@ -22,72 +22,96 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Your game title</h2>
+<h2>Beware the chickens!</h2>
 
 <ul>
 <li><strong>Originality:</strong>
-What is original about your game?
+I'd say this game is original by the fact that I am saving a part of the state
+for each of the objects, allowing for a kind of rewinding of time.
 </li>
 
 <li><strong>Technical Merit:</strong>
-What is interesting about your game technology?
+I didn't use any special technology; the only thing I used was the standard
+arcade physics.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-What did you learn from this prototype?
-What was the easiest or hardest part of making it?
+I learned a lot more about phaser. I figured out how to use sprite groups, how
+to do use keyboard input, how to use certain functions for audio, and I got
+spritesheets down fairly well. The hardest part of making this prototype was
+definitely getting tweens to work properly, then checking to see if movement was
+valid (bounds checking), and then structuring the code to allow for back tracking.
 </li>
 
 <li><strong>Prototype Assets:</strong>
-Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
 <ul>
-<li>Bouncing Phaser image: <a href="https://phaser.io/download/logo">Phaser logo</a></li>
+<li>Chicken: <a href="https://dribbble.com/shots/1605065-Game-Asset-Angry-Chicken-Game-Character-Sprite-Sheets">Chicken image</a></li>
+<li>Chicken audio: <a href="http://soundbible.com/871-Chicken.html">Chicken squawks</a></li>
+<li>Farmer: <a href="http://samdeleter.com/pixel-art/">Farmer spritesheet</a></li>
+<li>Background: <a href="https://www.shutterstock.com/video/clip-29523655-stock-footage-top-down-panning-view-of-sunflowers-field-aerial-shot.html?src=rel/2295470:5/gg">Field</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
-</li>
+I didn't really base my game off of anything else, so it doesn't really resemble
+any other game.</li>
 
 <li><strong>High Concept:</strong>
-A one-sentence summary of your game.
+Avoid the chickens for as long as possible, backtrack if necessary.
 </li>
 
 <li><strong>Theme:</strong>
-State which of the Storymatic themes you used.
+"Chicken"
 </li>
 
 <li><strong>Mandated Variety:</strong>
 State which input, randomness, genre, and play style you used in this prototype.
+Input: Direct, Keyboard
+Randomness: A lot of randomness
+Play Styles: Joker
+Genres: Overhead
 </li>
 
 <li><strong>Prototype Goal:</strong>
-What game mechanic is this prototype evaluating?
+This prototype is evaluating how using this different form of movement affects
+gameplay.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-What experience do you want players to have when playing your game?
+This is a game made just for fun; it is not a serious game at all, it is very
+much a toy game.
 </li>
 
 <li><strong>Gameplay:</strong>
-A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+The player uses the arrow keys to move. Every time the player moves, each of the
+enemies (chickens) will also take a turn to move. A counter is set in place to
+keep track of the amount of turns that the player has not collided with an enemy.
+If the player does collide with a chicken, their score is reset to zero. If,
+when the player clicks the key, they return to the position they just came from,
+the player will return to that spot, but the enemies will stay in place for that
+turn, as a sort of relative "undo" action. The goal of this game is to avoid the
+chickens for as long as possible.
 </li>
 
 <li><strong>Strategies:</strong>
-What player strategies do you expect will be effective at playing this game?
+Because the player can temporarily halt the movement of the enemies, the player
+may be able to use that "undo power" to avoid the enemy if they are in a bind.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
-How will the dramatic tension interact with the gameplay tension?
+This game takes place inside a chicken coop with a bunch of angry chickens out
+for your life! Try to avoid getting hit as long as possible. I feel like a setting
+like this is fairly unique, as I can't think of any other game in such a setting.
 </li>
 
 <li><strong>Target Audience:</strong>
-A single sentence that describes the demographic you're trying to reach.
+My target demographic is the early twenties and below range. I don't think many
+other people would find such an unpolished game even vaguely entertaining.
 </li>
 
 <li><strong>Play Time:</strong>
-How long does your game take to play?
+The player can play as long as they wish, but it is expected that they only
+play for a couple of minutes;
 </li>
 
 </ul>

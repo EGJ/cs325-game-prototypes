@@ -17,6 +17,7 @@ window.onload = function() {
         game.load.spritesheet('farmer', 'assets/farmerWalk.png', 300, 300);;
         game.load.image( 'enemy', 'assets/chicken.png');
         game.load.audio('squawks', 'assets/chicken-squawks.wav');
+        game.load.image('background', "assets/field.jpg");
     }
     //The objects that move
     /** @type {Phaser.Group} */
@@ -57,6 +58,10 @@ window.onload = function() {
         //Load and segment the audio
         squawks = game.add.audio('squawks');
         squawks.addMarker('squawkIWant', 1.5, 1);
+
+        //Add the background image
+        game.add.sprite(0, 0, 'background');
+        
 
         //Create a group that will contain all the enemies
         enemies = game.add.group()
@@ -278,6 +283,13 @@ window.onload = function() {
                 newPosition = {x: enemy.position.x + amount};
             }
 
+            //On a later iteration of this game, I would instead have each of the enemies
+            //be placed on a uniform grid that tightly hugs them, so I can just check
+            //like position.x/y +- 1 for valid moves. I could keep all that code in its
+            //own function, so the code is cleaner as well.
+            //Also, ideally, I would like to figure out if I can pass the x/y as literals
+            //to the dictionary... (Maybe a string would work?)
+
             //Finally, move the enemy to its new position
             game.add.tween(enemy).to(newPosition, tweenTime, 'Linear', true, 0);
         }
@@ -301,6 +313,8 @@ window.onload = function() {
 //Chicken: https://dribbble.com/shots/1605065-Game-Asset-Angry-Chicken-Game-Character-Sprite-Sheets
 //Squawks: http://soundbible.com/871-Chicken.html (public domain)
 //Farmer: http://samdeleter.com/pixel-art/
+//Field: https://www.shutterstock.com/video/clip-29523655-stock-footage-top-down-panning-view-of-sunflowers-field-aerial-shot.html?src=rel/2295470:5/gg
+//Straw Floor: https://www.123rf.com/photo_14399672_texture-of-straw-on-the-floor.html
 
 //Helpful link:
 //Fading Text: https://phaser.io/examples/v2/tweens/alpha-text

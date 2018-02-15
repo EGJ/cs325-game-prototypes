@@ -14,8 +14,9 @@ window.onload = function() {
     
     function preload() {
         // Load an image and call it 'logo'.
-        game.load.image( 'logo', 'assets/phaser2.png' );
+        game.load.spritesheet('farmer', 'assets/farmerWalk.png', 300, 300);;
         game.load.image( 'enemy', 'assets/chicken.png');
+        game.load.audio('squawks', 'assets/chicken-squawks.wav');
     }
     //The objects that move
     /** @type {Phaser.Group} */
@@ -41,15 +42,27 @@ window.onload = function() {
     /** @type {{}[][]} */
     var enemyHistory = [];
 
+    /** @type {number} */
     let moveIncrement = 50;
+    /** @type {number} */
     let tweenTime = 500;
+
+    //Variables related to the sounds
+    /** @type {Phaser.Sound} */
+    var squawks;
+    /** @type {boolean} */
+    var canSquawk = true;
     
     function create() {
+        //Load and segment the audio
+        squawks = game.add.audio('squawks');
+        squawks.addMarker('squawkIWant', 1.5, 1);
+
         //Create a group that will contain all the enemies
         enemies = game.add.group()
 
         //Create the player sprite at the center of the screen
-        player = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
+        player = game.add.sprite( game.world.centerX, game.world.centerY, 'farmer' );
         player.scale.setTo(0.5);
 
         //The number of enemies to create
@@ -111,18 +124,22 @@ window.onload = function() {
 
         //If an arrow key is pressed, move the player in that direction
         if(cursors.up.justDown){
+            player.animations.frame = 3;
             updateScore();
             movePlayerY(-moveIncrement);
         }
         else if(cursors.down.justDown){
+            player.animations.frame = 0;
             updateScore();
             movePlayerY(moveIncrement);
         }
         else if(cursors.left.justDown){
+            player.animations.frame = 1;
             updateScore();
             movePlayerX(-moveIncrement);
         }
         else if(cursors.right.justDown){
+            player.animations.frame = 2;
             updateScore();
             movePlayerX(moveIncrement);
         }
@@ -143,6 +160,12 @@ window.onload = function() {
         //Make the background a redish color and reset the score
         game.stage.backgroundColor = '#992d2d';
         turnsSurvived.text = "0"
+
+        if(canSquawk){
+            //Play the squawk noise
+            squawks.play("squawkIWant");
+            canSquawk = false;
+        }
     }
 
     function movePlayerY(amount){
@@ -151,7 +174,9 @@ window.onload = function() {
         }
 
         //Animated equivalent of player.position.y += amount
-        game.add.tween(player).to({ y: player.position.y+amount }, tweenTime, 'Linear', true, 0);
+        game.add.tween(player).to({ y: player.position.y+amount }, tweenTime, 'Linear', true, 0).onComplete.add(function(){
+            canSquawk = true;
+        });
         
         //If the player is returning the position they just came from (undo)
         //Note: JSON.stringify() is used because
@@ -180,7 +205,9 @@ window.onload = function() {
         }
 
         //Animated equivalent of player.position.x += amount
-        game.add.tween(player).to({ x: player.position.x+amount }, tweenTime, 'Linear', true, 0);
+        game.add.tween(player).to({ x: player.position.x+amount }, tweenTime, 'Linear', true, 0).onComplete.add(function(){
+            canSquawk = true;
+        });
 
         //If the player is returning the position they just came from
         //Note: JSON.stringify() is used because
@@ -252,7 +279,7 @@ window.onload = function() {
             }
 
             //Finally, move the enemy to its new position
-            game.add.tween(enemy).to(newPosition, tweenTime, 'Linear', true, 0)
+            game.add.tween(enemy).to(newPosition, tweenTime, 'Linear', true, 0);
         }
     }
 
@@ -272,5 +299,9 @@ window.onload = function() {
 
 //Assets:
 //Chicken: https://dribbble.com/shots/1605065-Game-Asset-Angry-Chicken-Game-Character-Sprite-Sheets
+//Squawks: http://soundbible.com/871-Chicken.html (public domain)
+//Farmer: http://samdeleter.com/pixel-art/
+
 //Helpful link:
-//https://phaser.io/examples/v2/tweens/alpha-text
+//Fading Text: https://phaser.io/examples/v2/tweens/alpha-text
+//Sprite Markers: https://phaser.io/examples/v2/audio/audio-sprite-duration

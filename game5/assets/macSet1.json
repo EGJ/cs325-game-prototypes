@@ -1,0 +1,12 @@
+{ "columns":32,
+ "image":"RoadTiles.png",
+ "imageheight":488,
+ "imagewidth":1952,
+ "margin":0,
+ "name":"macSet1",
+ "spacing":0,
+ "tilecount":256,
+ "tileheight":61,
+ "tilewidth":61,
+ "type":"tileset"
+}

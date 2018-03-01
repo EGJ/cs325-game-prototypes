@@ -136,7 +136,7 @@ window.onload = function() {
                 game.input.deleteMoveCallback(paint, this)
                 //Start a timer to restart the game
                 let timer = game.time.create(true);
-                timer.add(1000, function(){
+                timer.add(10000, function(){
                     //Restart the game
                     game.state.restart();
                 })

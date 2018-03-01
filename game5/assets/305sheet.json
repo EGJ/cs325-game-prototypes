@@ -1,0 +1,12 @@
+{ "columns":5,
+ "image":"305sheet.png",
+ "imageheight":305,
+ "imagewidth":1678,
+ "margin":0,
+ "name":"305sheet",
+ "spacing":0,
+ "tilecount":5,
+ "tileheight":305,
+ "tilewidth":305,
+ "type":"tileset"
+}

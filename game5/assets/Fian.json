@@ -1,0 +1,12 @@
+{ "columns":6,
+ "image":"Fian.png",
+ "imageheight":305,
+ "imagewidth":1830,
+ "margin":0,
+ "name":"Fian",
+ "spacing":0,
+ "tilecount":6,
+ "tileheight":305,
+ "tilewidth":305,
+ "type":"tileset"
+}

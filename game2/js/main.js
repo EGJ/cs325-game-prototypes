@@ -14,7 +14,7 @@ window.onload = function() {
     
     function preload() {
         // Load an image and call it 'logo'.
-        game.load.spritesheet('farmer', 'assets/farmerWalk.png', 300, 300);;
+        game.load.spritesheet('farmer', 'assets/farmerWalk.png', 300, 300);
         game.load.image( 'enemy', 'assets/chicken.png');
         game.load.audio('squawks', 'assets/chicken-squawks.wav');
         game.load.image('background', "assets/field.jpg");

@@ -94459,7 +94459,7 @@ Phaser.Physics.P2.prototype = {
         if (addToWorld === undefined) { addToWorld = true; }
 
         var output = [];
-
+        
         for (var i = 0, len = map.collision[layer].length; i < len; i++)
         {
             // name: json.layers[i].objects[v].name,
@@ -102939,14 +102939,11 @@ Phaser.TilemapParser = {
             layer = map.layers[i];
             collision[layer.name] = [];
             set = null;
-            console.log("numLayers: " + layer.data.length);
-            console.log("map tiles: " + map.tiles[0]);
 
             // rows of tiles
             for (var j = 0; j < layer.data.length; j++)
             {
                 row = layer.data[j];
-                console.log("rowLength: " + row.length);
 
                 // individual tiles
                 for (var k = 0; k < row.length; k++)
@@ -102959,10 +102956,6 @@ Phaser.TilemapParser = {
                     }
 
                     // find the relevant tileset
-                    console.log("rowNum: " + j);
-                    console.log("tileNum: " + k);
-                    console.log("index: " + tile.index)
-                    console.log("map tiles: " + map.tiles[tile.index]);
 
                     sid = map.tiles[tile.index][2];
                     set = map.tilesets[sid];

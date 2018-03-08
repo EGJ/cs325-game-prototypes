@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Hello! Amaze!</title>
+    <title>Teapot Racer!</title>
     <script src="js/phaser.min.js"></script>
     <script src="js/gyro.min.js"></script>
     <!-- Boot.js must come first since it creates the BasicGame object
@@ -29,74 +29,96 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Your game title</h2>
+<h2>Teapot Racer</h2>
 
 <ul>
 <li><strong>Originality:</strong>
-What is original about your game?
+My Game is a racing game, which in and of itself isn't super unique,
+but I don't think there are any phaser games out there that involve racing - 
+at least I couldn't find any. Also, this game incorporates gyroscopic
+motion for mobile devices.
 </li>
 
 <li><strong>Technical Merit:</strong>
-What is interesting about your game technology?
+I built the game for both mobile and desktop, using separate controls for each (gyroscope vs arrow keys),
+I tailored the sprites to fit my exact needs (sometimes involving a significant amount of work (e.g. fitting the
+original curved roads to match the straight ones in the tilemap)), and I created a custom tilemap.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
 What did you learn from this prototype?
 What was the easiest or hardest part of making it?
-Manipulating the curved road image so that it would align correctly in the tile map.
-Getting the created tilemap to work with phaser!
+Honestly, I learned a lot from this prototype. I learned about how to create tilesheets and tilemaps
+with tiled, I learned how to use gyroscopic controls, I've become very competent with P2 physics,
+and above all, I learned how to better deal with all Phaser's idiosyncrasies that make creating games difficult.
+
+The hardest parts of creating this game were: manipulating the curved road image so that it would align correctly in the tile map,
+getting the created tilemap to work with phaser (e.g. apparently tiled supports images of different sizes, but Phaser does not),
+and getting collision detection to work properly.
 </li>
 
 <li><strong>Prototype Assets:</strong>
-Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
 <ul>
-<li>Bouncing Phaser image: <a href="https://phaser.io/download/logo">Phaser logo</a></li>
+<li>Teapot Car<a href=https://www.flaticon.com/free-icon/vintage-teapot_14790>Teapot</a></li>
+<li>Road Segments: <a href=http://brunnett-dharaelvis.blogspot.com/2013/09/collision-with-2d-sprite-objects-and.html>Road Segments</a></li>
+<li>Preloading Background Image<a href=http://hdwallpapersbackgrounds.us/cars/cool-citroen-gran-turismo-car-hd-backgrounds-15908.html>Preload Background</a></li>
+<li>Progress Bar<a href=https://stackoverflow.com/questions/8038246/how-can-i-make-this-progress-bar-with-just-css>Progress Bar</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+I guess any racing game? I didn't base my game off of any specific game.
 </li>
 
 <li><strong>High Concept:</strong>
-A one-sentence summary of your game.
+Race to the finish line.
 </li>
 
 <li><strong>Theme:</strong>
-State which of the Storymatic themes you used.
+"Teapot"
 </li>
 
 <li><strong>Mandated Variety:</strong>
-State which input, randomness, genre, and play style you used in this prototype.
+Input: Indirect, Direct, Keyboard
+Randomness: Deterministic
+Play Styles: Competitor, Achiever
+Genres: Racing, Overhead
 </li>
 
 <li><strong>Prototype Goal:</strong>
-What game mechanic is this prototype evaluating?
+This prototype is evaluating how tilemaps can be effectively used, and how gyroscopic motion works.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-What experience do you want players to have when playing your game?
+I want players to have fun, but I also want the game to be somewhat challenging, so it feels more rewarding
+(e.g. go fast, but risk crashing, or take it slow but finish later).
 </li>
 
 <li><strong>Gameplay:</strong>
-A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+The player will use either the arrow keys (desktop), or gyroscope (mobile) to move the car.
+Once the player desides to start, the timer will begin, and the player must try to navigate
+the track, and make it to the end without going off-road.
+Note: There are some small gaps at the end of the curved section of the track. This sometimes means the
+game will think you left the track when you didn't. I would fix it, but I don't have enough time... Sorry :/
 </li>
 
 <li><strong>Strategies:</strong>
-What player strategies do you expect will be effective at playing this game?
+I suspect that taking it slow the first few times to get the hang of the controls is the best strategy.
+Then, once the player is familiar with the controls, it is only a matter of time and skill to become
+really good at the game.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
-How will the dramatic tension interact with the gameplay tension?
+In this game, you are a teapot trying to show your worth to all those who don't think you are worth anything.
+Prove them wrong! Show them that you are the ultimate racer.
 </li>
 
 <li><strong>Target Audience:</strong>
-A single sentence that describes the demographic you're trying to reach.
+I think people in their mid-teens to early thirties would enjoy this game.
 </li>
 
 <li><strong>Play Time:</strong>
-How long does your game take to play?
+About 5-15 minutes.
 </li>
 
 </ul>

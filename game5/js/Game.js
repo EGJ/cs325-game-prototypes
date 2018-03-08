@@ -174,7 +174,7 @@ BasicGame.Game.prototype = {
             car.body.rotation = angle;
         }
 
-        let hitResult = game.physics.p2.hitTest(car.position, mapBodies);
+        let hitResult = game.physics.p2.hitTest(car.position, mapBodies, 500);
         //If the car is not on the track
         if(hitResult.length == 0){
             let gameOverText = "Game Over.\nDo not go off the track."
@@ -286,3 +286,37 @@ BasicGame.Game.prototype = {
     }
 
 };
+
+//Teapot
+//(from https://www.flaticon.com/free-icon/vintage-teapot_14790)
+//https://imageog.flaticon.com/icons/png/512/14/14790.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF
+
+//Road segments
+//(from http://brunnett-dharaelvis.blogspot.com/2013/09/collision-with-2d-sprite-objects-and.html)
+//http://i.imgur.com/bNHYwZO.png
+//http://i.imgur.com/ppPw7ED.png
+
+//Car spritesheet
+//(from http://knowyourmeme.com/photos/1131764-age-of-empires-cobra-car-how-do-you-turn-this-on)
+//http://i0.kym-cdn.com/photos/images/newsfeed/001/131/764/71e.png
+
+//Static car sprite
+//(from https://openclipart.org/detail/61201/red-racing-car-top-view)
+//https://openclipart.org/image/2400px/svg_to_png/61201/simple-travel-car-top-view.png
+
+//Loading Background
+//(from http://hdwallpapersbackgrounds.us/cars/cool-citroen-gran-turismo-car-hd-backgrounds-15908.html)
+//http://hdwallpapersbackgrounds.us/backgrounds-image/wallpapers-hd-3s-1920x1080/hd-wallpapers-5202cbeo3-3s-1920x1080.jpg
+
+//Progress Bar
+//(from https://stackoverflow.com/questions/8038246/how-can-i-make-this-progress-bar-with-just-css)
+//https://i.stack.imgur.com/AuDV9.png
+
+//Sprites from images:
+//https://instantsprite.com
+
+//Tilemap physics & object thrust
+//https://phaser.io/examples/v2/p2-physics/tilemap
+
+//Javascript Some method
+//https://www.w3schools.com/Jsref/jsref_some.asp

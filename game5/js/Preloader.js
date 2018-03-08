@@ -23,7 +23,7 @@ BasicGame.Preloader.prototype = {
 		//	as the files below are loaded in.
 		this.load.setPreloadSprite(this.progressBar);
 
-		this.load.image('car', 'assets/car.png');
+		this.load.image('car', 'assets/teapot.png');
 		this.load.image('finishLine', 'assets/finishLine.png');
         this.load.image('minimap', 'assets/map.png');
         this.load.tilemap('map', 'assets/305mapembedded.json', null, Phaser.Tilemap.TILED_JSON);

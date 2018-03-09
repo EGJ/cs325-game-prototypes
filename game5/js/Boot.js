@@ -20,6 +20,7 @@ BasicGame.Boot.prototype = {
         {
             //  If you have any desktop specific settings, they can go in here
             this.scale.pageAlignHorizontally = true;
+            window.alert("Note: This game is optimized for mobile use.")
         }
         else
         {

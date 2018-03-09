@@ -174,7 +174,7 @@ BasicGame.Game.prototype = {
             car.body.rotation = angle;
         }
 
-        let hitResult = game.physics.p2.hitTest(car.position, mapBodies, 500);
+        let hitResult = game.physics.p2.hitTest(car.position, mapBodies);
         //If the car is not on the track
         if(hitResult.length == 0){
             let gameOverText = "Game Over.\nDo not go off the track."
@@ -248,9 +248,7 @@ BasicGame.Game.prototype = {
     },
 
     setGameReady: function(){
-        if(game.device.desktop){
-            window.alert("Note: This game is optimized for mobile use.")
-        }else{
+        if(!game.device.desktop){
             //Start the game in full screen, and enable the gyroscope
             game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
             game.scale.startFullScreen();

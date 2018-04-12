@@ -6,7 +6,7 @@
 var game;
 
 /**@type {number} */
-var numLives = 1;
+var numLives = 3;
 /**@type {number} */
 var numlaunchers = 8;
 /**@type {number} */

@@ -2,9 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Hello! Amaze!</title>
-    <script src="js/phaser.js"></script>
-    <script src="js/main.js"></script>
+    <title>The Last Robin</title>
+    <script src="js/phaser.min.js"></script>
+    <!-- Boot.js must come first since it creates the BasicGame object
+	that stores all the states. -->
+	<script src="js/Boot.js"></script>
+	<script src="js/Preloader.js"></script>
+	<script src="js/Game.js"></script>
+	<!-- main.js must come last since it references the other ones. -->
+	<script src="js/Main.js"></script>
 
 <style>
 body
@@ -22,72 +28,80 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Your game title</h2>
+<h2>The Last Robin</h2>
 
 <ul>
 <li><strong>Originality:</strong>
-What is original about your game?
+I reversed the normal game of shoot stuff in the air from the ground to
+dodge stuff shot at you from the ground while in the air..
 </li>
 
 <li><strong>Technical Merit:</strong>
-What is interesting about your game technology?
+¯\_(ツ)_/¯
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-What did you learn from this prototype?
-What was the easiest or hardest part of making it?
+The game itself wasn't terribly hard, but it did take some time just to figure out how everything
+would be laid out and interact with each other. Also, standardizing the sprites and making the game
+scaleable was an interesting endeavor.
 </li>
 
 <li><strong>Prototype Assets:</strong>
-Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
 <ul>
-<li>Bouncing Phaser image: <a href="https://phaser.io/download/logo">Phaser logo</a></li>
+<li><a href=https://www.pinterest.com/pin/436497388859683801/>Chimney</a></li>
+<li><a href=http://clubpenguin.wikia.com/wiki/File:Cozy_Fireplace_sprite_007.png>Robin Spritesheets</a></li>
+<li><a href=http://clipartmag.com/smoke-cloud-cliparts>Smoke</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+I guess this game is sort of like missile defense
 </li>
 
 <li><strong>High Concept:</strong>
-A one-sentence summary of your game.
+Dodge the smoke clouds for as long as possible
 </li>
 
 <li><strong>Theme:</strong>
-State which of the Storymatic themes you used.
+N/A
 </li>
 
 <li><strong>Mandated Variety:</strong>
-State which input, randomness, genre, and play style you used in this prototype.
+Input: Direct, Mouse
+Randomness: Deterministic
+Play Styles: Joker
+Genres: Side-View
 </li>
 
 <li><strong>Prototype Goal:</strong>
-What game mechanic is this prototype evaluating?
+How to come up with an idea... Making a game a week is hard.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-What experience do you want players to have when playing your game?
+This game is very simple, it is just meant to be a fun little
+game you only play for a little while.
 </li>
 
 <li><strong>Gameplay:</strong>
-A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+The player moves their mouse to control the robin. If the player is hit by a smoke
+cloud, then they lose a life and the smoke clouds are cleared from the screen.
+If the player loses all of their lives, the game ends. There is no true ending to this game.
 </li>
 
 <li><strong>Strategies:</strong>
-What player strategies do you expect will be effective at playing this game?
+This isn't really a game of strategy, its more a game of reflexes and quick pathfinding.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
-How will the dramatic tension interact with the gameplay tension?
+The world is overpolluted and you are a robin trying to survive, though your struggle is futile.
 </li>
 
 <li><strong>Target Audience:</strong>
-A single sentence that describes the demographic you're trying to reach.
+I think anyone in their early to late teens would like this game.
 </li>
 
 <li><strong>Play Time:</strong>
-How long does your game take to play?
+A few minutes.
 </li>
 
 </ul>

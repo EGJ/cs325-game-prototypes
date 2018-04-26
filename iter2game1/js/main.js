@@ -11,13 +11,14 @@ window.onload = function() {
     // All loading functions will typically all be found inside "preload()".
     
     /** @type {Phaser.Game} */
-    var game = new Phaser.Game(700, 800, Phaser.AUTO, 'game', {preload: preload, create: create, update: update, render: render});
+    var game = new Phaser.Game(700, 800, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
     
     function preload() {
         game.load.image('heart', 'assets/Heart.png');
         game.load.image('gridSquare', 'assets/GridTile.png');
         game.load.image('tower1', 'assets/Tower1.png');
         game.load.image('enemy1', 'assets/Enemy1.png');
+        game.load.image('sellButton', 'assets/Delete.png');
         game.load.image('projectile', 'assets/Projectile.png');
         game.load.image('exit', 'assets/Drawbridge.png');
         game.load.image('spawner', 'assets/Cave.png');
@@ -33,6 +34,8 @@ window.onload = function() {
     var tileWidth;
     /**@type {number} */
     var tileHeight;
+    /**@type {number} */
+    var timerSpeed = 1000;
     /**@type {Phaser.Timer} */
     var actionTimer;
     //This amount affects the scaling in such a way that the sprite does not take up a full grid tile,
@@ -53,8 +56,6 @@ window.onload = function() {
     var enemies;
     /**@type {Phaser.Group} */
     var lives;
-
-    var lines = [];
 
     //The text style
     var style;
@@ -79,7 +80,7 @@ window.onload = function() {
 
         //Create a timer that fires when it is time for every piece to take an action
         actionTimer = game.time.create(false);
-        actionTimer.loop(500, takeAction, this);
+        actionTimer.loop(timerSpeed, takeAction, this);
         actionTimer.start();
     }
     
@@ -101,7 +102,11 @@ window.onload = function() {
     function createBottomIcons(){
         let t1 = game.add.sprite(0, playableHeight, 'tower1');
         t1.inputEnabled = true;
-        t1.events.onInputDown.add(onTowerClick, this);
+        t1.events.onInputDown.add(bottomIconClicked, this, 0, 'tower');
+
+        let sellButton = game.add.sprite(t1.width+10, playableHeight, 'sellButton');
+        sellButton.inputEnabled = true;
+        sellButton.events.onInputDown.add(bottomIconClicked, this, 0, 'sell')
 
         /**@type {Phaser.Sprite} */
         let lastHeart = lives.create(0, playableHeight, 'heart');
@@ -127,39 +132,31 @@ window.onload = function() {
         exit.scale.setTo(scalingFactorX, scalingFactorY);
     }
 
-    function onTowerClick(){
-        //If the player already has a sprite "in their hand," delete
+    function bottomIconClicked(buttonClicked, pointer, buttonType){
+        //console.log(buttonClicked.key);
+        //console.log(pointer.x + " " + pointer.y);
+        //console.log(buttonType);
+        
+        //If the player already has a sprite "in their hand," delete it
         if(queuedSprite != null){
             queuedSprite.destroy();
             queuedSprite = null;
         }
 
         //Replace/Create a new sprite that the player will have in their hands
-        queuedSprite = game.add.sprite(game.input.x, game.input.y, 'tower1');
-
+        queuedSprite = game.add.sprite(game.input.x, game.input.y, buttonClicked.key);
+        queuedSprite.objectType = buttonType;
         let scalingFactor = (game.world.width-gridSpacing) / (tilesPerRow * queuedSprite.width);
         queuedSprite.scale.setTo(scalingFactor, scalingFactor);
-    }
 
-    function render(){
-        if(lines.length != 0){
-            game.debug.geom(lines[lines.length-1]);
-            //game.debug.lineInfo(lines[0], 32, 32);
+        if(buttonType == 'tower'){
+            //TODO: Check which tower was clicked, and change whatever stats accordingly
+            queuedSprite.damage = 40;
         }
-        
-        // for(let i=0; i<lines.length; i++){
-        //     /**@type {Phaser.Line} */
-        //     let line = lines[i];
-        //     game.debug.geom(lines);
-        // }
     }
 
     function takeAction(){
-        for(let i=0; i<lines.length; i++){
-            /**@type {Phaser.Line} */
-            let line = lines[i];
-        }
-
+        //Take action for all enemies
         /**@type {Phaser.Sprite[]} */
         let allEnemies = enemies.children;
         for(let i=0; i<allEnemies.length; i++){
@@ -192,6 +189,7 @@ window.onload = function() {
             }
         }
 
+        //Create a new enemy if the timer says so
         timeUntilNextEnemy--;
         if(timeUntilNextEnemy == 0){
             //Reset the timer for when a new enemy should spawn
@@ -199,16 +197,20 @@ window.onload = function() {
             
             //Create a new enemy
             let enemy = enemies.create(entryPoint.x + tileWidth, 1, 'enemy1');
+            enemy.health = 100;
             let scalingFactor = (game.world.width-gridSpacing) / (tilesPerRow * enemy.width);
             enemy.scale.setTo(scalingFactor, scalingFactor);
         }
 
+        //Take action for each tower
         /**@type {Phaser.Sprite[]} */
         let allTowers = activeTowers.children;
         for(let i=0; i<allTowers.length; i++){
             let tower = allTowers[i];
             let towerRange = 200;
 
+
+            /**@type {Phaser.Sprite} */
             let closestEnemy;
             let closestEnemyDistance;
 
@@ -216,15 +218,30 @@ window.onload = function() {
                 let enemy = allEnemies[j];
                 let distance = game.physics.arcade.distanceBetween(tower, enemy);
 
-                if(closestEnemyDistance == null || (distance <= towerRange && closestEnemyDistance > distance)){
+                //If the current enemy is within the towers range, the distance to this enemy is closer than the
+                //current closest enemy, and the enemy is not "Dead" (health is modified before the enemy dies so multiple towers do not shoot the same enemy)
+                if(distance <= towerRange && (closestEnemyDistance == null || closestEnemyDistance > distance) && enemy.health > 0){
                     closestEnemy = enemy;
                     closestEnemyDistance = distance;
                 }
             }
 
+            //If the tower has an enemy in its range
             if(closestEnemy != null){
-                let line = new Phaser.Line(tower.x, tower.y, closestEnemy.x, closestEnemy.y);
-                lines.push(line)
+                //Shoot the enemy and modify the enemy's health immediately (so multiple towers do not shoot the same enemy)
+                let projectile = game.add.sprite(tower.centerX, tower.centerY, 'projectile');
+                closestEnemy.health -= tower.damage;
+
+                //Animated the projectile from the tower to the enemy
+                game.add.tween(projectile).to({x: closestEnemy.x, y: closestEnemy.y}, timerSpeed-100, 'Linear', true, 0).onComplete.add(function(){
+                    //Remove the projectile
+                    projectile.destroy();
+                    //If the enemy has no more health, remove the enemy as well
+                    if(closestEnemy.health <= 0){
+                        enemies.remove(closestEnemy);
+                        closestEnemy.destroy();
+                    }
+                });
             }
         }
     }
@@ -241,7 +258,7 @@ window.onload = function() {
             let closestY = Math.floor(y/tileHeight)*tileHeight; //let closestYTileNum = Math.floor((y / playableHeight) * tilesPerRow);
 
             //The position of the cursor and of the tower closest to the cursor
-            let currentPosition = new Phaser.Point(closestX, closestY)
+            let currentPosition = new Phaser.Point(closestX+1, closestY+1)
             let towerPosition;
             /**@type {Phaser.Sprite}*/
             let closestTower = game.physics.arcade.closest(currentPosition, activeTowers.children);
@@ -249,22 +266,32 @@ window.onload = function() {
             if(closestTower != null){
                 towerPosition = new Phaser.Point(closestTower.x, closestTower.y)
             }
-
-            //If the player clicked on a free grid space
-            if(towerPosition == null || !currentPosition.equals(towerPosition)){
-                //If the player has a tower to playce
-                if(queuedSprite != null){
-                    //Place the sprite at the grid location and add it to the group of active towers (+1 so the grid is still visible)
-                    queuedSprite.position.setTo(closestX+1, closestY+1);
-                    activeTowers.add(queuedSprite);
-                    queuedSprite = null;
-                }
-            }else{
-                //TODO: Ask the player whether or not they want to replace the current tower.
+            
+            //If the player clicked on an occupied grid space
+            if(towerPosition != null && currentPosition.equals(towerPosition)){
+                //TODO: Ask the player whether or not they want to replace the current tower, if they have one.
                 console.log("occupied");
+                if(queuedSprite != null && queuedSprite.objectType == 'sell'){
+                    activeTowers.remove(closestTower);
+                    closestTower.destroy();
+                }
+            //If the player clicked on a free grid space
+            }else{
+                //If the player has a tower to place
+                if(queuedSprite != null){
+                    if(queuedSprite.objectType == 'tower'){
+                        //Place the sprite at the grid location and add it to the group of active towers (+1 so the grid is still visible)
+                        queuedSprite.position.setTo(closestX+1, closestY+1);
+                        activeTowers.add(queuedSprite);
+                        queuedSprite = null;
+                    }else if(queuedSprite.objectType == 'sell'){
+                        queuedSprite.destroy();
+                        queuedSprite = null;
+                    }
+                }
             }
         }
-        //If the player just moved the mouse, and has a queued sprite
+        //If the player only moved the mouse and has a queued sprite, move the sprite to the mouse's position
         else if(queuedSprite != null){
             queuedSprite.position.setTo(x, y);
         }

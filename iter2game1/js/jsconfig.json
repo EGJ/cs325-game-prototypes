@@ -1,0 +1,6 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		//"checkJs": true, // Add this at your own risk. Super VSCode type checking for Javascript
+	},
+}

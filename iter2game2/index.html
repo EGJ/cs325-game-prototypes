@@ -27,20 +27,25 @@ body
 
 <ul>
 <li><strong>Originality:</strong>
-What is original about your game?
+It's a tower-defense game without a set map.
 </li>
 
 <li><strong>Technical Merit:</strong>
-What is interesting about your game technology?
+Pathfinding: Enemies will always take the shortest path to the exit. Also, players are unable to block the way out.
+Difficulty Scaling: The game continually gets harder the longer you play.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-What did you learn from this prototype?
-What was the easiest or hardest part of making it?
+From creating this game, I learned enough about Phaser that I feel comfortable creating a wide variety of other games using Phaser.
+I do still need to tweak a few things regarding the difficulty of the game though.
+
+The hardest part of creating this game was getting everything to interact with each other in the correct way,
+and making the game scaleable (Changing the number of tiles in the board, enemy stats, difficulty increase, etc.) - 
+Now, all of this is as easy as changing a few variables).
 </li>
 
 <li><strong>Prototype Assets:</strong>
-Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+Everything was created from scratch except the following:
 <ul>
 <li>Cave: <a href="https://vignette.wikia.nocookie.net/creepypastaitalia/images/5/5c/Dark_Cave-Day.png/revision/latest/scale-to-width-down/255?cb=20120704145252&path-prefix=it">Cave</a></li>
 <li>Heart: <a href="https://scratch.mit.edu/projects/54676056/">Heart</a></li>
@@ -48,48 +53,57 @@ Did you make your prototype assets from scratch? Did you borrow them? Cite your 
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
-Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+This game built upon my previous iteration. Things that were added: pathfinding, another tower, enemy health bars,
+tower costs, customizable stats, walls, difficulty scaling, and some other stuff I'm sure I'm forgetting.
 </li>
 
 <li><strong>High Concept:</strong>
-A one-sentence summary of your game.
+Defend your castle from an unending onslaught of enemies.
 </li>
 
 <li><strong>Theme:</strong>
-State which of the Storymatic themes you used.
+N/A (Optional).
 </li>
 
 <li><strong>Mandated Variety:</strong>
-State which input, randomness, genre, and play style you used in this prototype.
+Input: Direct, Mouse, Buttons
+Randomness: Deterministic and A Lot Of Randomness
+Play Styles: Achiever, Craftsman
+Genres: Tower-Defense
 </li>
 
 <li><strong>Prototype Goal:</strong>
-What game mechanic is this prototype evaluating?
+To push the boundaries of what I am able to create in a short period of time.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
-What experience do you want players to have when playing your game?
+I want players to be challenged, but still have fun.
 </li>
 
 <li><strong>Gameplay:</strong>
-A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+The player clicks the buttons on the bottom of the screen to select the object they would like to use.
+They then click on the board to use the object. The towers and walls cost money to use, while the sell object
+removes towers and walls from the board and refunds money to the player.
+Enemies will constantly spawn from the cave and move towards the exit. If they reach the exit, one of the player's
+lives is lost. The game ends when the player runs out of lives.
+Towers will autmatically attack enemies based on their damage, range, and speed.
 </li>
 
 <li><strong>Strategies:</strong>
-What player strategies do you expect will be effective at playing this game?
+Making paths for the enemies to follow, and using different towers at strategic locations.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
-How will the dramatic tension interact with the gameplay tension?
+You are the king of a town and must defend your castle. Due to a meteor impact, a cave was surfaced. You must now
+do your best to protect your castle for as long as you can.
 </li>
 
 <li><strong>Target Audience:</strong>
-A single sentence that describes the demographic you're trying to reach.
+I believe people in their late teens to early thirties would enjoy playing this game.
 </li>
 
 <li><strong>Play Time:</strong>
-How long does your game take to play?
+Depending on how good the player is, this game can last anywhere from a minute to half an hour, perhaps.
 </li>
 
 </ul>
